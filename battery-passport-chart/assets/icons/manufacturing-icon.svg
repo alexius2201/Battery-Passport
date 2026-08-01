@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Manufacturing">
-  <circle cx="32" cy="32" r="30" fill="#fff" stroke="#111" stroke-width="2"/>
-  <rect x="18" y="22" width="10" height="22" rx="2" fill="#111"/>
-  <rect x="27" y="22" width="10" height="22" rx="2" fill="#111"/>
-  <rect x="36" y="22" width="10" height="22" rx="2" fill="#111"/>
-  <path fill="#111" d="M16 44h32v4H16v-4z"/>
-  <path fill="#fff" d="M21 28h4v8h-4zm9 0h4v8h-4zm9 0h4v8h-4z"/>
-</svg>
