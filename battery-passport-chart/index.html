@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Battery Passport Interactive Website</title>
+    <link rel="stylesheet" href="styles.css?v=22" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page-home">
+    <div class="app">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav__brand" href="#" data-page="home">Battery Passport Interactive Website</a>
+        <div class="nav__links">
+          <button class="nav__link nav__link--active" type="button" data-page="home">
+            Battery Passport Overview
+          </button>
+          <button class="nav__link" type="button" data-page="documents">
+            Document Overview
+          </button>
+          <button class="nav__link" type="button" data-page="process">
+            Interactive DPP Process
+          </button>
+          <button class="nav__link" type="button" data-page="feedback">
+            Evaluation & Feedback
+          </button>
+        </div>
+      </nav>
+
+      <!-- Page 1: Battery Passport Overview -->
+      <section id="page-home" class="page page--home page--active" aria-labelledby="home-title">
+        <header class="header">
+          <div class="header__badge">EU Battery Regulation</div>
+          <h1 id="home-title">Battery Passport Overview</h1>
+          <p class="header__subtitle">
+            A digital overview of the battery lifecycle and Digital Product Passport (DPP)
+            requirements under EU regulation.
+          </p>
+        </header>
+
+        <section class="dpp-guide" aria-labelledby="dpp-guide-title">
+          <header class="dpp-guide__header">
+            <h2 id="dpp-guide-title">Battery DPP — Regulatory Overview</h2>
+            <p>
+              Key requirements under Regulation (EU) 2023/1542 for Digital Product Passports
+              on batteries placed on the EU market.
+            </p>
+          </header>
+
+          <div class="dpp-guide__grid">
+            <article class="dpp-item">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">1</span>
+                <h3>What is Battery DPP?</h3>
+              </div>
+              <p>
+                A standardized digital record (accessed via a physical QR code) that stores data
+                on a battery’s identity, performance, sustainability, material composition, and
+                health status across its entire life cycle.
+              </p>
+              <span class="dpp-ref">Article 77 &amp; 78</span>
+            </article>
+
+            <article class="dpp-item">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">2</span>
+                <h3>When does it take effect?</h3>
+              </div>
+              <p class="dpp-item__highlight">
+                <strong>February 18, 2027</strong>
+                <span class="dpp-ref dpp-ref--inline">Article 77(1)</span>
+              </p>
+              <p>
+                All covered batteries placed on the EU market after this date must have an
+                active DPP.
+              </p>
+            </article>
+
+            <article class="dpp-item dpp-item--wide">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">3</span>
+                <h3>Which batteries require a DPP?</h3>
+              </div>
+              <p>
+                Mandatory for 3 battery categories
+                <span class="dpp-ref dpp-ref--inline">Article 77(1)</span>:
+              </p>
+              <ul class="dpp-battery-list">
+                <li>
+                  <span class="dpp-battery-term" tabindex="0">
+                    <strong>LMT Batteries</strong>
+                    <span class="dpp-battery-preview" role="tooltip">
+                      <img
+                        src="assets/images/lmt-batteries.png"
+                        alt="Electric bicycle and electric scooter representing Light Means of Transport (LMT) batteries"
+                        width="300"
+                        height="225"
+                        loading="lazy"
+                      />
+                      <span class="dpp-battery-preview__caption">
+                        E-bikes, e-scooters &amp; similar LMT vehicles
+                      </span>
+                    </span>
+                  </span>
+                  — Light Means of Transport (e.g., e-bikes, e-scooters)
+                </li>
+                <li>
+                  <span class="dpp-battery-term" tabindex="0">
+                    <strong>EV Batteries</strong>
+                    <span class="dpp-battery-preview" role="tooltip">
+                      <img
+                        src="assets/images/ev-batteries.png"
+                        alt="Electric vehicle representing EV traction batteries"
+                        width="300"
+                        height="225"
+                        loading="lazy"
+                      />
+                      <span class="dpp-battery-preview__caption">
+                        Electric cars &amp; other electric vehicles
+                      </span>
+                    </span>
+                  </span>
+                  — Electric Vehicles
+                </li>
+                <li>
+                  <span class="dpp-battery-term" tabindex="0">
+                    <strong>Industrial Batteries</strong>
+                    <span class="dpp-battery-preview" role="tooltip">
+                      <img
+                        src="assets/images/industrial-batteries.png"
+                        alt="Industrial battery energy storage system representing batteries above 2 kWh"
+                        width="300"
+                        height="225"
+                        loading="lazy"
+                      />
+                      <span class="dpp-battery-preview__caption">
+                        Stationary storage &amp; industrial applications (&gt; 2 kWh)
+                      </span>
+                    </span>
+                  </span>
+                  — Capacity &gt; 2 kWh (includes stationary energy storage systems)
+                </li>
+              </ul>
+            </article>
+
+            <article class="dpp-item dpp-item--wide">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">4</span>
+                <h3>Who is impacted across the value chain?</h3>
+              </div>
+              <dl class="dpp-stakeholders">
+                <div class="dpp-stakeholder">
+                  <dt>Manufacturers</dt>
+                  <dd>Create, register, and fund the initial DPP.</dd>
+                </div>
+                <div class="dpp-stakeholder">
+                  <dt>Importers &amp; Distributors</dt>
+                  <dd>Verify DPP compliance before placing products on the EU market.</dd>
+                </div>
+                <div class="dpp-stakeholder">
+                  <dt>Repurposers / Remanufacturers</dt>
+                  <dd>
+                    Must update DPP data during second-life operations
+                    <span class="dpp-ref dpp-ref--inline">Articles 73–74</span>.
+                  </dd>
+                </div>
+                <div class="dpp-stakeholder">
+                  <dt>Recyclers &amp; Service Operators</dt>
+                  <dd>
+                    Access battery chemistry and health data (SoH) for safe dismantling and
+                    recycling.
+                  </dd>
+                </div>
+                <div class="dpp-stakeholder">
+                  <dt>Customs &amp; Market Surveillance</dt>
+                  <dd>Validate digital compliance at EU borders.</dd>
+                </div>
+                <div class="dpp-stakeholder">
+                  <dt>Consumers</dt>
+                  <dd>Gain transparency on carbon footprint and sustainability metrics.</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="dpp-item dpp-item--wide">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">5</span>
+                <h3>How is it implemented?</h3>
+              </div>
+              <p>
+                <strong>Architecture:</strong> Scannable QR code linked to an open,
+                machine-readable, interoperable EU digital registry
+                <span class="dpp-ref dpp-ref--inline">Article 78</span>.
+              </p>
+              <p class="dpp-item__subheading">Role-Based Data Access (Annex XIII)</p>
+              <ul class="dpp-access-list">
+                <li class="dpp-access dpp-access--public">
+                  <span class="dpp-access__label">Public</span>
+                  General specs, carbon footprint, recycled content, CE certificate.
+                </li>
+                <li class="dpp-access dpp-access--restricted">
+                  <span class="dpp-access__label">Restricted (Technicians / Recyclers)</span>
+                  State of Health (SoH), electrical diagrams, dismantling manuals.
+                </li>
+                <li class="dpp-access dpp-access--authorities">
+                  <span class="dpp-access__label">Authorities</span>
+                  Compliance audit reports, Supply Chain Due Diligence details.
+                </li>
+              </ul>
+            </article>
+
+            <article class="dpp-item dpp-item--wide">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">6</span>
+                <h3>Why DPP is necessary?</h3>
+              </div>
+              <ul class="dpp-benefits">
+                <li>
+                  <span class="dpp-benefits__icon" aria-hidden="true">🌿</span>
+                  <div>
+                    <strong>Circular Economy</strong>
+                    Enables battery second-life applications and efficient critical material
+                    recovery.
+                  </div>
+                </li>
+                <li>
+                  <span class="dpp-benefits__icon" aria-hidden="true">📉</span>
+                  <div>
+                    <strong>Decarbonization</strong>
+                    Forces transparency and reduction of manufacturing carbon footprints.
+                  </div>
+                </li>
+                <li>
+                  <span class="dpp-benefits__icon" aria-hidden="true">🛡️</span>
+                  <div>
+                    <strong>Supply Chain Integrity</strong>
+                    Enforces ethical raw material sourcing (Due Diligence).
+                  </div>
+                </li>
+                <li>
+                  <span class="dpp-benefits__icon" aria-hidden="true">⚖️</span>
+                  <div>
+                    <strong>Market Enforcement</strong>
+                    Provides EU Customs with tools to instantly block non-compliant imports.
+                  </div>
+                </li>
+              </ul>
+            </article>
+
+            <article class="dpp-item dpp-item--wide">
+              <div class="dpp-item__head">
+                <span class="dpp-item__number">7</span>
+                <h3>What quantitative thresholds are tracked?</h3>
+              </div>
+              <div class="dpp-thresholds">
+                <div class="dpp-threshold">
+                  <h4>Recycled Content Minimums (by 2031)</h4>
+                  <p>Mandatory percentage of recovered materials in new batteries:</p>
+                  <ul class="dpp-stats">
+                    <li><span>Cobalt</span><strong>16%</strong></li>
+                    <li><span>Lead</span><strong>85%</strong></li>
+                    <li><span>Lithium</span><strong>6%</strong></li>
+                    <li><span>Nickel</span><strong>6%</strong></li>
+                  </ul>
+                </div>
+                <div class="dpp-threshold">
+                  <h4>Recycling Efficiency Targets</h4>
+                  <p>
+                    Lithium-based battery recycling efficiency target of
+                    <strong>65% by 2025</strong>, rising to <strong>70% by 2030</strong>.
+                  </p>
+                </div>
+                <div class="dpp-threshold">
+                  <h4>Carbon Footprint Classes</h4>
+                  <p>
+                    Emission ratings (<strong>A–D performance classes</strong>) determining
+                    market access.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="overview-grid">
+          <article class="overview-card">
+            <h2>6 Lifecycle Stages</h2>
+            <ol class="stage-list">
+              <li>Raw Material Mining & Extraction</li>
+              <li>Material Refining & Chemical Processing</li>
+              <li>Cell Manufacturing & Pack Assembly</li>
+              <li>Market Distribution, Sales, and Usage</li>
+              <li>Second-Life, Remanufacturing, or Repurposing</li>
+              <li>End-of-Life (EoL), Collection, and Recycling</li>
+            </ol>
+          </article>
+
+          <article class="overview-card">
+            <h2>Key Passport Data</h2>
+            <ul class="feature-list">
+              <li>Material composition & recycled content</li>
+              <li>Carbon footprint & environmental impact</li>
+              <li>Supply chain due diligence</li>
+              <li>State of health & performance history</li>
+              <li>Repair, reuse & recycling instructions</li>
+            </ul>
+          </article>
+
+          <article class="overview-card">
+            <h2>Get Started</h2>
+            <p>
+              Use the interactive cycle chart to explore passport data at each lifecycle stage.
+              Click any point to view detailed compliance and passport information.
+            </p>
+            <button class="btn btn--primary" type="button" data-page="process">
+              Open Interactive DPP Process →
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Page 2: Document Overview -->
+      <section id="page-documents" class="page page--documents" aria-labelledby="documents-title" hidden>
+        <header class="header">
+          <div class="header__badge">EU Regulation</div>
+          <h1 id="documents-title">Document Overview</h1>
+          <p class="header__subtitle">
+            Reference tables for ESPR regulatory documents and actor responsibilities
+            under the Ecodesign for Sustainable Products framework.
+          </p>
+        </header>
+
+        <section class="doc-overview-links" aria-labelledby="eur-lex-docs-title">
+          <header class="doc-overview-links__header">
+            <h2 id="eur-lex-docs-title">EU Regulatory Documents</h2>
+            <p>
+              Official legal texts on EUR-Lex that establish Digital Product Passport requirements
+              and battery-specific obligations.
+            </p>
+          </header>
+          <ul class="doc-links">
+            <li>
+              <a
+                class="doc-link"
+                href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="doc-link__title">ESPR Document</span>
+                <span class="doc-link__meta">Ecodesign for Sustainable Products Regulation (EU) 2024/1781</span>
+                <span class="doc-link__action">Open on EUR-Lex ↗</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="doc-link"
+                href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1542"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="doc-link__title">Battery Regulation Document</span>
+                <span class="doc-link__meta">Regulation (EU) 2023/1542 concerning batteries and waste batteries</span>
+                <span class="doc-link__action">Open on EUR-Lex ↗</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="doc-overview" aria-labelledby="espr-documents-title">
+          <header class="doc-overview__header">
+            <h2 id="espr-documents-title">ESPR Documents</h2>
+          </header>
+
+          <div class="data-table-block">
+            <h3 class="data-table-block__title">ESPR Documents</h3>
+            <div class="table-scroll" id="espr-documents-table" aria-label="ESPR Documents table"></div>
+          </div>
+
+          <div class="data-table-block">
+            <h3 class="data-table-block__title">Actors and Responsibilities</h3>
+            <div class="table-scroll" id="espr-actors-table" aria-label="ESPR actors and responsibilities table"></div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Page 3: Interactive DPP Process -->
+      <section id="page-process" class="page page--process" aria-labelledby="process-title" hidden>
+        <header class="header header--compact">
+          <h1 id="process-title">Interactive DPP Process</h1>
+          <p class="header__subtitle">
+            Explore DPP access by physical battery layer and by lifecycle stage.
+            Use the layer zoom to see market, BMS, and material obligations, or
+            click a lifecycle stage for actors and passport data.
+          </p>
+        </header>
+
+        <main class="main">
+          <section
+            class="battery-zoom-section"
+            aria-labelledby="battery-zoom-title"
+          >
+            <header class="battery-zoom__header">
+              <h2 id="battery-zoom-title">DPP Physical Access Layers</h2>
+              <p>
+                Zoom into the battery pack — layers explode apart in 3D as you go
+                deeper, revealing who accesses each physical layer and what DPP
+                obligations apply.
+              </p>
+            </header>
+
+            <div class="battery-zoom__layout">
+              <nav
+                class="battery-zoom__controls"
+                id="battery-zoom-controls"
+                aria-label="Battery zoom levels"
+              ></nav>
+
+              <div class="battery-zoom__viz" aria-hidden="false">
+                <div class="battery-exploded-view">
+                  <div
+                    id="battery-zoom-scene"
+                    class="battery-exploded-scene"
+                    data-zoom="full"
+                    role="img"
+                    aria-labelledby="battery-zoom-svg-title"
+                  >
+                    <p id="battery-zoom-svg-title" class="visually-hidden">
+                      Interactive 3D exploded battery layer diagram
+                    </p>
+
+                    <div class="battery-exploded__shadow" aria-hidden="true"></div>
+
+                    <div
+                      class="battery-plate battery-plate--cells battery-layer"
+                      data-layer="level-3"
+                    >
+                      <div class="battery-plate__body">
+                        <div class="battery-plate__face battery-plate__face--top">
+                          <div class="battery-cells-grid">
+                            <span class="battery-cell"></span>
+                            <span class="battery-cell"></span>
+                            <span class="battery-cell"></span>
+                            <span class="battery-cell"></span>
+                            <span class="battery-cell"></span>
+                            <span class="battery-cell"></span>
+                          </div>
+                          <span class="battery-plate__tag battery-plate__tag--material">Li · Co · Ni</span>
+                          <span class="battery-plate__label">Cells &amp; Materials</span>
+                        </div>
+                        <div class="battery-plate__face battery-plate__face--front"></div>
+                        <div class="battery-plate__face battery-plate__face--right"></div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="battery-plate battery-plate--bms battery-layer"
+                      data-layer="level-2"
+                    >
+                      <div class="battery-plate__body">
+                        <div class="battery-plate__face battery-plate__face--top">
+                          <div class="battery-bms-board">
+                            <span class="battery-bms-chip"></span>
+                            <span class="battery-bms-chip"></span>
+                            <span class="battery-bms-chip"></span>
+                            <span class="battery-bms-chip"></span>
+                            <span class="battery-bms-label">BMS Controller</span>
+                          </div>
+                          <div class="battery-bms-traces" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                          </div>
+                          <span class="battery-plate__label">Smart Layer · SoH · Capacity</span>
+                        </div>
+                        <div class="battery-plate__face battery-plate__face--front"></div>
+                        <div class="battery-plate__face battery-plate__face--right"></div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="battery-plate battery-plate--casing battery-layer"
+                      data-layer="level-1"
+                    >
+                      <div class="battery-plate__body">
+                        <div class="battery-plate__face battery-plate__face--top">
+                          <span class="battery-plate__frame"></span>
+                          <span class="battery-plate__label">Chassis &amp; Casing</span>
+                        </div>
+                        <div class="battery-plate__face battery-plate__face--front"></div>
+                        <div class="battery-plate__face battery-plate__face--right"></div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="battery-plate battery-plate--exterior battery-layer"
+                      data-layer="full"
+                    >
+                      <div class="battery-plate__body">
+                        <div class="battery-plate__face battery-plate__face--top">
+                          <span class="battery-bolt battery-bolt--tl"></span>
+                          <span class="battery-bolt battery-bolt--tr"></span>
+                          <span class="battery-bolt battery-bolt--bl"></span>
+                          <span class="battery-bolt battery-bolt--br"></span>
+                          <div class="battery-mark battery-mark--qr" aria-hidden="true">
+                            <span class="battery-mark__qr-grid"></span>
+                            <span class="battery-mark__caption">DPP QR</span>
+                          </div>
+                          <div class="battery-mark battery-mark--ce" aria-hidden="true">CE</div>
+                          <span class="battery-mark battery-mark--warning battery-mark--li">⚡ Li-ion</span>
+                          <span class="battery-mark battery-mark--warning battery-mark--hv">High Voltage</span>
+                          <span class="battery-plate__model">EV Battery Pack · 75 kWh</span>
+                          <span class="battery-plate__label">Exterior · Safety Labels</span>
+                        </div>
+                        <div class="battery-plate__face battery-plate__face--front"></div>
+                        <div class="battery-plate__face battery-plate__face--right"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="battery-exploded-legend" aria-label="Layer legend">
+                    <li><span class="battery-exploded-legend__swatch battery-exploded-legend__swatch--exterior"></span>Exterior</li>
+                    <li><span class="battery-exploded-legend__swatch battery-exploded-legend__swatch--casing"></span>Casing</li>
+                    <li><span class="battery-exploded-legend__swatch battery-exploded-legend__swatch--bms"></span>BMS</li>
+                    <li><span class="battery-exploded-legend__swatch battery-exploded-legend__swatch--cells"></span>Cells</li>
+                  </ul>
+                </div>
+
+                <p class="battery-zoom__hint" id="battery-zoom-hint">
+                  Select a zoom level — layers explode apart as you go deeper
+                </p>
+              </div>
+
+              <aside
+                id="battery-zoom-detail"
+                class="battery-zoom__detail"
+                aria-live="polite"
+                aria-label="Zoom level details"
+              ></aside>
+            </div>
+          </section>
+
+          <h2 class="process-section-title">Lifecycle Stages</h2>
+
+          <div class="process-filters" aria-label="Filter lifecycle chart by actor role">
+            <label class="process-filters__field" for="actor-role-filter">
+              <span class="process-filters__label">Filter by actor</span>
+              <select class="process-filters__select" id="actor-role-filter">
+                <option value="">All actors</option>
+              </select>
+            </label>
+            <button class="process-filters__clear" type="button" id="actor-filter-clear">Clear filter</button>
+            <p class="process-filters__count" id="actor-filter-count" aria-live="polite"></p>
+          </div>
+
+          <section class="chart-section" aria-label="Battery lifecycle cycle chart">
+            <div class="chart-wrapper">
+              <svg
+                id="cycle-chart"
+                viewBox="0 0 720 720"
+                role="img"
+                aria-label="Interactive battery lifecycle cycle chart"
+              >
+                <defs>
+                  <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6" />
+                    <stop offset="50%" stop-color="#06b6d4" />
+                    <stop offset="100%" stop-color="#10b981" />
+                  </linearGradient>
+                  <filter id="node-glow">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <circle
+                  class="chart-ring"
+                  cx="360"
+                  cy="360"
+                  r="200"
+                  fill="none"
+                  stroke="url(#ring-gradient)"
+                  stroke-width="2"
+                  stroke-dasharray="8 6"
+                  opacity="0.5"
+                />
+
+                <g id="chart-arrows"></g>
+                <g id="chart-nodes"></g>
+
+                <g class="chart-center">
+                  <circle cx="360" cy="360" r="72" class="chart-center__bg" />
+                  <text x="360" y="350" class="chart-center__title" text-anchor="middle">
+                    Battery
+                  </text>
+                  <text x="360" y="378" class="chart-center__subtitle" text-anchor="middle">
+                    Passport
+                  </text>
+                </g>
+              </svg>
+            </div>
+          </section>
+
+          <aside
+            id="detail-panel"
+            class="detail-panel detail-panel--empty"
+            aria-live="polite"
+            aria-label="Stage details"
+          >
+            <div class="detail-panel__placeholder">
+              <div class="detail-panel__placeholder-icon" aria-hidden="true">◎</div>
+              <h2>Select a lifecycle stage</h2>
+              <p>
+                Click any point on the cycle chart to open actors, DPP
+                responsibilities, passport data, and compliance details for
+                that stage.
+              </p>
+            </div>
+          </aside>
+        </main>
+      </section>
+
+      <!-- Page 3: Evaluation & Feedback -->
+      <section id="page-feedback" class="page page--feedback" aria-labelledby="feedback-title" hidden>
+        <header class="header header--compact">
+          <h1 id="feedback-title">Evaluation & Feedback</h1>
+          <p class="header__subtitle">
+            Share your experience using the Battery Passport Interactive Website and help us improve
+            the Digital Product Passport visualization.
+          </p>
+        </header>
+
+        <div class="feedback-layout">
+          <form id="feedback-form" class="feedback-form">
+            <div class="form-group">
+              <label for="rating">Overall experience</label>
+              <div class="rating-group" role="radiogroup" aria-label="Overall experience rating">
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="1" required />
+                  <span>1 — Poor</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="2" />
+                  <span>2</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="3" />
+                  <span>3 — Average</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="4" />
+                  <span>4</span>
+                </label>
+                <label class="rating-option">
+                  <input type="radio" name="rating" value="5" />
+                  <span>5 — Excellent</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="clarity">Was the lifecycle chart easy to understand?</label>
+              <select id="clarity" name="clarity" required>
+                <option value="">Select an option</option>
+                <option value="yes">Yes, very clear</option>
+                <option value="somewhat">Somewhat clear</option>
+                <option value="no">No, needs improvement</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="useful-stage">Most useful lifecycle stage</label>
+              <select id="useful-stage" name="usefulStage">
+                <option value="">Select a stage (optional)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="comments">Comments & suggestions</label>
+              <textarea
+                id="comments"
+                name="comments"
+                rows="5"
+                placeholder="What worked well? What could be improved?"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email (optional)</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <button class="btn btn--primary" type="submit">Submit Feedback</button>
+          </form>
+
+          <aside class="feedback-summary" aria-live="polite">
+            <h2>Your submissions</h2>
+            <p class="feedback-summary__hint">
+              Feedback is saved locally in your browser for this demo.
+            </p>
+            <ul id="feedback-list" class="feedback-list">
+              <li class="feedback-list__empty">No feedback submitted yet.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </div>
+
+    <script src="data/espr-data.js?v=2"></script>
+    <script src="espr-tables.js?v=6"></script>
+    <script src="data.js?v=8"></script>
+    <script src="app.js?v=11"></script>
+  </body>
+</html>
