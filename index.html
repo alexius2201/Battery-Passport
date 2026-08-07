@@ -7,7 +7,11 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Battery Passport Interactive Website</title>
-    <link rel="stylesheet" href="styles.css?v=22" />
+    <link rel="stylesheet" href="styles.css?v=23" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/driver.js@1.3.5/dist/driver.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,12 +36,21 @@
           <button class="nav__link" type="button" data-page="feedback">
             Evaluation & Feedback
           </button>
+          <button
+            class="nav__tour-btn"
+            type="button"
+            data-tour="tour-start-btn"
+            id="tour-start-btn"
+            aria-label="Take a guided tour of the website"
+          >
+            Take a Tour
+          </button>
         </div>
       </nav>
 
       <!-- Page 1: Battery Passport Overview -->
       <section id="page-home" class="page page--home page--active" aria-labelledby="home-title">
-        <header class="header">
+        <header class="header" data-tour="page-header">
           <div class="header__badge">EU Battery Regulation</div>
           <h1 id="home-title">Battery Passport Overview</h1>
           <p class="header__subtitle">
@@ -151,7 +164,7 @@
               </ul>
             </article>
 
-            <article class="dpp-item dpp-item--wide">
+            <article class="dpp-item dpp-item--wide" data-tour="due-diligence">
               <div class="dpp-item__head">
                 <span class="dpp-item__number">4</span>
                 <h3>Who is impacted across the value chain?</h3>
@@ -333,8 +346,9 @@
           <div class="header__badge">EU Regulation</div>
           <h1 id="documents-title">Document Overview</h1>
           <p class="header__subtitle">
-            Reference tables for ESPR regulatory documents and actor responsibilities
-            under the Ecodesign for Sustainable Products framework.
+            Reference tables for ESPR and Battery Regulation documents and actor
+            responsibilities under the Ecodesign for Sustainable Products framework
+            and Regulation (EU) 2023/1542.
           </p>
         </header>
 
@@ -379,7 +393,7 @@
             <h2 id="espr-documents-title">ESPR Documents</h2>
           </header>
 
-          <div class="data-table-block">
+          <div class="data-table-block" data-tour="regulation-table">
             <h3 class="data-table-block__title">ESPR Documents</h3>
             <div class="table-scroll" id="espr-documents-table" aria-label="ESPR Documents table"></div>
           </div>
@@ -387,6 +401,30 @@
           <div class="data-table-block">
             <h3 class="data-table-block__title">Actors and Responsibilities</h3>
             <div class="table-scroll" id="espr-actors-table" aria-label="ESPR actors and responsibilities table"></div>
+          </div>
+        </section>
+
+        <section class="doc-overview" aria-labelledby="battery-regulation-title">
+          <header class="doc-overview__header">
+            <h2 id="battery-regulation-title">Battery Regulation</h2>
+          </header>
+
+          <div class="data-table-block">
+            <h3 class="data-table-block__title">Battery Regulation Documents</h3>
+            <div
+              class="table-scroll"
+              id="battery-regulation-documents-table"
+              aria-label="Battery Regulation documents table"
+            ></div>
+          </div>
+
+          <div class="data-table-block">
+            <h3 class="data-table-block__title">Battery Regulation Actors</h3>
+            <div
+              class="table-scroll"
+              id="battery-regulation-actors-table"
+              aria-label="Battery Regulation actors and responsibilities table"
+            ></div>
           </div>
         </section>
       </section>
@@ -405,6 +443,7 @@
         <main class="main">
           <section
             class="battery-zoom-section"
+            data-tour="dpp-modules"
             aria-labelledby="battery-zoom-title"
           >
             <header class="battery-zoom__header">
@@ -558,7 +597,7 @@
             <p class="process-filters__count" id="actor-filter-count" aria-live="polite"></p>
           </div>
 
-          <section class="chart-section" aria-label="Battery lifecycle cycle chart">
+          <section class="chart-section" data-tour="chart-section" aria-label="Battery lifecycle cycle chart">
             <div class="chart-wrapper">
               <svg
                 id="cycle-chart"
@@ -720,8 +759,11 @@
     </div>
 
     <script src="data/espr-data.js?v=2"></script>
-    <script src="espr-tables.js?v=6"></script>
+    <script src="data/battery-regulation-data.js?v=1"></script>
+    <script src="espr-tables.js?v=7"></script>
     <script src="data.js?v=8"></script>
     <script src="app.js?v=11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.3.5/dist/driver.js.iife.js"></script>
+    <script src="tour.js?v=1"></script>
   </body>
 </html>

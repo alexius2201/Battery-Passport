@@ -193,6 +193,8 @@ function renderFilterableTable(container, { columns, rows, selectFilters = [], c
 function renderEsprTables() {
   renderEsprDocumentsTable();
   renderEsprActorsTable();
+  renderBatteryRegulationDocumentsTable();
+  renderBatteryRegulationActorsTable();
 }
 
 function renderEsprDocumentsTable() {
@@ -233,6 +235,49 @@ function renderEsprActorsTable() {
         key: "scope",
         label: "Scope / Role",
         options: uniqueSortedValues(ESPR_ACTORS, "scope"),
+      },
+    ],
+  });
+}
+
+function renderBatteryRegulationDocumentsTable() {
+  const container = document.getElementById("battery-regulation-documents-table");
+  if (!container || typeof BATTERY_REGULATION_DOCUMENTS === "undefined") return;
+
+  renderFilterableTable(container, {
+    columns: [
+      { key: "chapter", label: "Chapter" },
+      { key: "article", label: "Article" },
+      { key: "title", label: "Article Title" },
+      { key: "summary", label: "Summary" },
+    ],
+    rows: BATTERY_REGULATION_DOCUMENTS,
+    cascadeOrder: ["chapter", "article", "title"],
+    selectFilters: [
+      { key: "chapter", label: "Chapter" },
+      { key: "article", label: "Article" },
+      { key: "title", label: "Article Title" },
+    ],
+  });
+}
+
+function renderBatteryRegulationActorsTable() {
+  const container = document.getElementById("battery-regulation-actors-table");
+  if (!container || typeof BATTERY_REGULATION_ACTORS === "undefined") return;
+
+  renderFilterableTable(container, {
+    columns: [
+      { key: "actor", label: "Actor / Entity" },
+      { key: "reference", label: "Battery Regulation Reference" },
+      { key: "scope", label: "Primary Scope / Role" },
+      { key: "responsibilities", label: "Key Legal Responsibilities and Obligations" },
+    ],
+    rows: BATTERY_REGULATION_ACTORS,
+    selectFilters: [
+      {
+        key: "actor",
+        label: "Actor / Entity",
+        options: uniqueSortedValues(BATTERY_REGULATION_ACTORS, "actor"),
       },
     ],
   });
