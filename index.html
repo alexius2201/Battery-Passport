@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Battery Passport Interactive Website</title>
-    <link rel="stylesheet" href="styles.css?v=23" />
+    <link rel="stylesheet" href="styles.css?v=24" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/driver.js@1.3.5/dist/driver.css"
@@ -678,7 +678,19 @@
         </header>
 
         <div class="feedback-layout">
-          <form id="feedback-form" class="feedback-form">
+          <form id="feedback-form" class="feedback-form" novalidate>
+            <div id="feedback-status" class="form-status" role="status" aria-live="polite" hidden></div>
+
+            <!-- Honeypot — leave empty (spam protection) -->
+            <input
+              type="checkbox"
+              name="botcheck"
+              class="form-honeypot"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+
             <div class="form-group">
               <label for="rating">Overall experience</label>
               <div class="rating-group" role="radiogroup" aria-label="Overall experience rating">
@@ -723,13 +735,16 @@
             </div>
 
             <div class="form-group">
-              <label for="comments">Comments & suggestions</label>
+              <label for="comments">Comments &amp; suggestions <span class="form-required">*</span></label>
               <textarea
                 id="comments"
                 name="comments"
                 rows="5"
+                required
+                minlength="5"
                 placeholder="What worked well? What could be improved?"
               ></textarea>
+              <p class="form-field-hint">Please share at least a short comment so we can review your feedback.</p>
             </div>
 
             <div class="form-group">
@@ -742,13 +757,16 @@
               />
             </div>
 
-            <button class="btn btn--primary" type="submit">Submit Feedback</button>
+            <button class="btn btn--primary" type="submit" id="feedback-submit">
+              <span class="btn__label">Submit Feedback</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
           </form>
 
           <aside class="feedback-summary" aria-live="polite">
             <h2>Your submissions</h2>
             <p class="feedback-summary__hint">
-              Feedback is saved locally in your browser for this demo.
+              Submissions are emailed for review and also kept locally in this browser.
             </p>
             <ul id="feedback-list" class="feedback-list">
               <li class="feedback-list__empty">No feedback submitted yet.</li>
@@ -758,11 +776,12 @@
       </section>
     </div>
 
+    <script src="feedback-config.js?v=1"></script>
     <script src="data/espr-data.js?v=2"></script>
     <script src="data/battery-regulation-data.js?v=1"></script>
     <script src="espr-tables.js?v=7"></script>
     <script src="data.js?v=8"></script>
-    <script src="app.js?v=11"></script>
+    <script src="app.js?v=12"></script>
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.3.5/dist/driver.js.iife.js"></script>
     <script src="tour.js?v=1"></script>
   </body>

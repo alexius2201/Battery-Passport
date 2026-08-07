@@ -1277,6 +1277,81 @@ body.page-feedback .nav__link--active {
   font-weight: 500;
 }
 
+.form-status {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.form-status--success {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+}
+
+.form-status--error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.form-required {
+  color: #f87171;
+}
+
+.form-field-hint {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.feedback-form .btn {
+  position: relative;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.feedback-form .btn__spinner {
+  display: none;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: feedback-spin 0.7s linear infinite;
+}
+
+.feedback-form.is-submitting .btn__spinner {
+  display: inline-block;
+}
+
+.feedback-form.is-submitting .btn__label {
+  opacity: 0.92;
+}
+
+.feedback-form.is-submitting .btn {
+  cursor: wait;
+  opacity: 0.9;
+}
+
+@keyframes feedback-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .feedback-list {
   list-style: none;
   display: flex;

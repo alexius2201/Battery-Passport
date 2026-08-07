@@ -597,7 +597,12 @@ function showPage(page, updateHash) {
 }
 
 function initFeedbackForm() {
+  const form = document.getElementById("feedback-form");
   const stageSelect = document.getElementById("useful-stage");
+  const submitBtn = document.getElementById("feedback-submit");
+  const statusEl = document.getElementById("feedback-status");
+  if (!form || !stageSelect || !submitBtn) return;
+
   LIFECYCLE_STAGES.forEach((stage) => {
     const option = document.createElement("option");
     option.value = stage.id;
@@ -607,29 +612,157 @@ function initFeedbackForm() {
 
   renderFeedbackList();
 
-  document.getElementById("feedback-form").addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
+    clearFeedbackStatus();
 
+    const formData = new FormData(form);
+    const rating = String(formData.get("rating") || "");
+    const clarity = String(formData.get("clarity") || "");
+    const usefulStage = String(formData.get("usefulStage") || "");
+    const comments = String(formData.get("comments") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const botcheck = formData.get("botcheck");
+
+    if (botcheck) {
+      return;
+    }
+
+    const validationError = validateFeedbackForm({ rating, clarity, comments, email });
+    if (validationError) {
+      showFeedbackStatus(validationError, "error");
+      if (!comments) {
+        document.getElementById("comments")?.focus();
+      }
+      return;
+    }
+
+    const accessKey =
+      typeof FEEDBACK_CONFIG !== "undefined" ? FEEDBACK_CONFIG.accessKey?.trim() : "";
+    if (!accessKey) {
+      showFeedbackStatus(
+        "Feedback delivery is not configured yet. Add your Web3Forms access key in feedback-config.js.",
+        "error"
+      );
+      return;
+    }
+
+    const stage = LIFECYCLE_STAGES.find((item) => item.id === usefulStage);
     const entry = {
       id: Date.now(),
-      rating: formData.get("rating"),
-      clarity: formData.get("clarity"),
-      usefulStage: formData.get("usefulStage"),
-      comments: formData.get("comments")?.trim() || "",
-      email: formData.get("email")?.trim() || "",
+      rating,
+      clarity,
+      usefulStage,
+      comments,
+      email,
       submittedAt: new Date().toLocaleString(),
     };
 
-    const submissions = getFeedbackSubmissions();
-    submissions.unshift(entry);
-    localStorage.setItem("battery-passport-feedback", JSON.stringify(submissions));
+    setFeedbackSubmitting(true);
 
-    form.reset();
-    renderFeedbackList();
-    showFeedbackConfirmation();
+    try {
+      const response = await fetch(FEEDBACK_CONFIG.endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: FEEDBACK_CONFIG.subject,
+          from_name: FEEDBACK_CONFIG.fromName,
+          replyto: email || undefined,
+          rating: `${rating}/5`,
+          chart_clarity: formatClarity(clarity),
+          most_useful_stage: stage ? stage.label : "Not specified",
+          comments,
+          email: email || "Not provided",
+          submitted_at: entry.submittedAt,
+          page_url: window.location.href,
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || "Unable to send feedback. Please try again.");
+      }
+
+      const submissions = getFeedbackSubmissions();
+      submissions.unshift(entry);
+      localStorage.setItem("battery-passport-feedback", JSON.stringify(submissions));
+
+      form.reset();
+      renderFeedbackList();
+      showFeedbackStatus("Thank you for your feedback!", "success");
+    } catch (error) {
+      const message =
+        error instanceof TypeError
+          ? "Network error — please check your connection and try again."
+          : error.message || "Something went wrong while sending your feedback.";
+      showFeedbackStatus(message, "error");
+    } finally {
+      setFeedbackSubmitting(false);
+    }
   });
+}
+
+function validateFeedbackForm({ rating, clarity, comments, email }) {
+  if (!rating) {
+    return "Please select an overall experience rating.";
+  }
+  if (!clarity) {
+    return "Please tell us whether the lifecycle chart was easy to understand.";
+  }
+  if (!comments) {
+    return "Please enter your comments and suggestions before submitting.";
+  }
+  if (comments.length < 5) {
+    return "Please write a slightly longer comment (at least 5 characters).";
+  }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return "Please enter a valid email address, or leave the field empty.";
+  }
+  return "";
+}
+
+function setFeedbackSubmitting(isSubmitting) {
+  const form = document.getElementById("feedback-form");
+  const submitBtn = document.getElementById("feedback-submit");
+  if (!form || !submitBtn) return;
+
+  form.classList.toggle("is-submitting", isSubmitting);
+  submitBtn.disabled = isSubmitting;
+  submitBtn.setAttribute("aria-busy", isSubmitting ? "true" : "false");
+
+  const label = submitBtn.querySelector(".btn__label");
+  if (label) {
+    label.textContent = isSubmitting ? "Sending…" : "Submit Feedback";
+  }
+}
+
+function clearFeedbackStatus() {
+  const statusEl = document.getElementById("feedback-status");
+  if (!statusEl) return;
+  statusEl.hidden = true;
+  statusEl.className = "form-status";
+  statusEl.textContent = "";
+}
+
+function showFeedbackStatus(message, type) {
+  const statusEl = document.getElementById("feedback-status");
+  if (!statusEl) return;
+  statusEl.hidden = false;
+  statusEl.className = `form-status form-status--${type}`;
+  statusEl.textContent = message;
+
+  if (type === "success") {
+    window.setTimeout(() => {
+      if (statusEl.textContent === message) {
+        clearFeedbackStatus();
+      }
+    }, 6000);
+  }
 }
 
 function getFeedbackSubmissions() {
@@ -660,11 +793,19 @@ function renderFeedbackList() {
           </div>
           <p class="feedback-item__clarity">Clarity: ${formatClarity(entry.clarity)}</p>
           ${stage ? `<p class="feedback-item__stage">Most useful: ${stage.label}</p>` : ""}
-          ${entry.comments ? `<p class="feedback-item__comments">"${entry.comments}"</p>` : ""}
+          ${entry.comments ? `<p class="feedback-item__comments">"${escapeFeedbackHtml(entry.comments)}"</p>` : ""}
         </li>
       `;
     })
     .join("");
+}
+
+function escapeFeedbackHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function formatClarity(value) {
@@ -674,17 +815,4 @@ function formatClarity(value) {
     no: "Needs improvement",
   };
   return labels[value] || value;
-}
-
-function showFeedbackConfirmation() {
-  const form = document.getElementById("feedback-form");
-  const existing = form.querySelector(".form-success");
-  if (existing) existing.remove();
-
-  const message = document.createElement("p");
-  message.className = "form-success";
-  message.textContent = "Thank you! Your feedback has been saved.";
-  form.prepend(message);
-
-  setTimeout(() => message.remove(), 4000);
 }
