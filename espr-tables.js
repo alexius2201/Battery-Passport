@@ -275,9 +275,9 @@ function renderBatteryRegulationActorsTable() {
     rows: BATTERY_REGULATION_ACTORS,
     selectFilters: [
       {
-        key: "actor",
-        label: "Actor / Entity",
-        options: uniqueSortedValues(BATTERY_REGULATION_ACTORS, "actor"),
+        key: "scope",
+        label: "Scope / Role",
+        options: uniqueSortedValues(BATTERY_REGULATION_ACTORS, "scope"),
       },
     ],
   });
